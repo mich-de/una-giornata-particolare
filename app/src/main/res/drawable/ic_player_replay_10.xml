@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Circular Arrow Arc CCW -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M24,8 A16,16 0 1,0 40,24 A16,16 0 0,0 35,12.7" />
+    <!-- Arrow Head -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,3 L24,13 L17,8 Z" />
+    <!-- Number 10 Centered -->
+    <!-- Digit 1 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M18,20 L21,18 L21,29 L18.8,29 L18.8,20.2 Z" />
+    <!-- Digit 0 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M26,18 C28.5,18 29.8,19.8 29.8,23.5 C29.8,27.2 28.5,29 26,29 C23.5,29 22.2,27.2 22.2,23.5 C22.2,19.8 23.5,18 26,18 Z M26,20 C24.8,20 24.3,21.2 24.3,23.5 C24.3,25.8 24.8,27 26,27 C27.2,27 27.7,25.8 27.7,23.5 C27.7,21.2 27.2,20 26,20 Z" />
+</vector>

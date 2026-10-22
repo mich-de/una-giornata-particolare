@@ -1,0 +1,34 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Black Circle Background -->
+    <path
+        android:fillColor="#0A0B0E"
+        android:pathData="M60,0 A60,60 0 1,1 59.9,0 Z" />
+    <!-- Yellow Ring Outline -->
+    <path
+        android:strokeColor="#FFE600"
+        android:strokeWidth="4"
+        android:pathData="M60,6 A54,54 0 1,1 59.9,6 Z" />
+    <!-- Sunglasses Frame -->
+    <path
+        android:fillColor="#FFE600"
+        android:pathData="M24,42 L96,42 L94,48 L80,48 C76,48 74,45 68,45 C62,45 60,48 56,48 L40,48 L26,48 Z" />
+    <!-- Left Glass -->
+    <path
+        android:fillColor="#FFE600"
+        android:pathData="M28,49 L54,49 C54,58 50,65 39,65 C30,65 28,58 28,49 Z" />
+    <!-- Right Glass -->
+    <path
+        android:fillColor="#FFE600"
+        android:pathData="M66,49 L92,49 C92,58 90,65 81,65 C70,65 66,58 66,49 Z" />
+    <!-- Black Tie -->
+    <path
+        android:fillColor="#FFE600"
+        android:pathData="M56,71 L64,71 L62,77 L58,77 Z" />
+    <path
+        android:fillColor="#FFE600"
+        android:pathData="M57,78 L63,78 L66,102 L60,108 L54,102 Z" />
+</vector>
