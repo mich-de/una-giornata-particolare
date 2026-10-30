@@ -31,6 +31,8 @@ import it.michde.totoeduardo.data.Platforms
 import it.michde.totoeduardo.data.Playable
 import it.michde.totoeduardo.data.StreamResolver
 import it.michde.totoeduardo.player.PlayerScreen
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -64,6 +66,17 @@ fun AppRoot(repo: CatalogRepository) {
     var external by remember { mutableStateOf<Pair<Film, String>?>(null) }
     var progressVersion by remember { mutableIntStateOf(0) }
 
+    /** Verifica dall'Italia quali titoli Mediaset si vedono senza abbonamento; gli altri spariscono. */
+    fun verifyMediaset() {
+        val toCheck = catalog.films.filter { it.platform == Platforms.MEDIASET && it.drm == null }
+        if (toCheck.isEmpty()) return
+        scope.launch {
+            val results = toCheck.map { f -> async { f.id to StreamResolver.mediasetPlayable(f) } }.awaitAll()
+            val drm = results.mapNotNull { (id, ok) -> ok?.let { id to !it } }.toMap()
+            catalog = repo.applyDrm(catalog, drm)
+        }
+    }
+
     fun startScan() {
         if (scan != null) return
         scan = ScanState("Avvio scansione…", 0f)
@@ -72,6 +85,7 @@ fun AppRoot(repo: CatalogRepository) {
                 val (c, report) = repo.scanDevice(catalog) { msg, p -> scan = ScanState(msg, p) }
                 catalog = c
                 scanReport = report
+                verifyMediaset()
                 Toast.makeText(context, report.joinToString("  •  "), Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
                 Toast.makeText(context, "Scansione non riuscita: ${e.message}", Toast.LENGTH_LONG).show()
@@ -87,7 +101,14 @@ fun AppRoot(repo: CatalogRepository) {
         scope.launch {
             when (val p = StreamResolver.resolve(film)) {
                 is Playable.Stream -> nowPlaying = NowPlaying(film, p, startMs)
-                is Playable.External -> external = film to p.reason
+                is Playable.External -> when {
+                    film.platform != Platforms.MEDIASET -> external = film to p.reason
+                    p.needsSubscription -> {
+                        catalog = repo.applyDrm(catalog, mapOf(film.id to true))
+                        Toast.makeText(context, p.reason, Toast.LENGTH_LONG).show()
+                    }
+                    else -> Toast.makeText(context, p.reason, Toast.LENGTH_LONG).show()
+                }
             }
             resolving = null
         }
@@ -97,7 +118,7 @@ fun AppRoot(repo: CatalogRepository) {
         catalog = repo.loadLocal()
         loading = false
         catalog = repo.refreshRemote(catalog)
-        if (catalog.films.isEmpty()) startScan()
+        if (catalog.films.isEmpty()) startScan() else verifyMediaset()
     }
 
     val np = nowPlaying
@@ -107,13 +128,16 @@ fun AppRoot(repo: CatalogRepository) {
             stream = np.stream,
             initialPositionMs = np.startMs,
             onBack = { nowPlaying = null; progressVersion++ },
-            onOpenExternal = { reason -> nowPlaying = null; progressVersion++; external = np.film to reason }
+            onOpenExternal = { reason ->
+                nowPlaying = null; progressVersion++
+                if (np.film.platform != Platforms.MEDIASET) external = np.film to reason
+            }
         )
         return
     }
 
     HomeScreen(
-        catalog = catalog,
+        catalog = catalog.copy(films = catalog.films.filter { !it.hidden }),
         isLoading = loading,
         scan = scan,
         progressVersion = progressVersion,
@@ -186,7 +210,7 @@ private fun InfoDialog(catalog: Catalog, report: List<String>, onClose: () -> Un
                 if (report.isNotEmpty()) Text("Ultima scansione: " + report.joinToString(", "), color = Palette.TextMuted, fontSize = 12.sp)
                 Text(
                     "Il catalogo si aggiorna ogni settimana da GitHub; ⟳ cerca subito i titoli nuovi su RaiPlay e Mediaset Infinity. " +
-                        "I video si guardano dai server ufficiali; quando serve l'accesso o l'abbonamento, il titolo si apre nell'app della piattaforma.",
+                        "Tutto si guarda qui nell'app: i titoli Mediaset che richiedono abbonamento vengono nascosti.",
                     color = Palette.TextMuted, fontSize = 12.sp, textAlign = TextAlign.Start
                 )
             }

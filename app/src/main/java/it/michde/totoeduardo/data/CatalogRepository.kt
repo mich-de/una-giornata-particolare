@@ -49,6 +49,7 @@ class CatalogRepository(private val context: Context) {
                 val old = byId[f.id]
                 // conserva i metadati più ricchi (DRM, durata) raccolti dalla CI
                 byId[f.id] = if (old == null) f else old.copy(
+                    drm = old.drm ?: f.drm,
                     thumb = old.thumb.ifBlank { f.thumb },
                     description = old.description.ifBlank { f.description },
                     persons = (old.persons + f.persons).distinct()
@@ -58,6 +59,14 @@ class CatalogRepository(private val context: Context) {
             save(merged)
             merged to res.report
         }
+
+    /** Registra quali titoli Mediaset si vedono senza abbonamento (verifica fatta dall'Italia). */
+    suspend fun applyDrm(current: Catalog, drm: Map<String, Boolean>): Catalog = withContext(Dispatchers.IO) {
+        if (drm.isEmpty()) return@withContext current
+        val updated = current.copy(films = current.films.map { f -> drm[f.id]?.let { f.copy(drm = it) } ?: f })
+        save(updated)
+        updated
+    }
 
     private fun save(c: Catalog) {
         val o = JSONObject()

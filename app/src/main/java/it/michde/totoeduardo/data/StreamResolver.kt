@@ -17,7 +17,7 @@ sealed class Playable {
     ) : Playable()
 
     /** Da aprire nell'app o nel sito ufficiale (login, abbonamento, YouTube...). */
-    data class External(val url: String, val reason: String) : Playable()
+    data class External(val url: String, val reason: String, val needsSubscription: Boolean = false) : Playable()
 }
 
 enum class StreamKind { HLS, DASH, MP4 }
@@ -47,6 +47,18 @@ object StreamResolver {
             }
         } catch (e: Exception) {
             Playable.External(film.pageUrl, "Non è stato possibile avviare il video (${e.message ?: "errore di rete"}).")
+        }
+    }
+
+    /** true = si vede nell'app, false = serve l'abbonamento, null = non verificabile ora. */
+    suspend fun mediasetPlayable(film: Film): Boolean? = withContext(Dispatchers.IO) {
+        try {
+            when (val p = resolveMediaset(film)) {
+                is Playable.Stream -> true
+                is Playable.External -> if (p.needsSubscription) false else null
+            }
+        } catch (e: Exception) {
+            null
         }
     }
 
@@ -136,12 +148,15 @@ object StreamResolver {
             }
             protectedSeen = true
         }
-        val reason = when {
-            geoBlocked -> "Mediaset rende disponibile questo titolo solo dall'Italia."
-            protectedSeen -> "Su Mediaset Infinity questo titolo richiede l'accesso: si apre nell'app ufficiale."
-            else -> "Si apre su Mediaset Infinity."
+        return when {
+            geoBlocked -> Playable.External(film.pageUrl, "Mediaset rende disponibile questo titolo solo dall'Italia.")
+            protectedSeen -> Playable.External(
+                film.pageUrl,
+                "Su Mediaset Infinity questo titolo richiede l'abbonamento: lo tolgo dal catalogo.",
+                needsSubscription = true
+            )
+            else -> Playable.External(film.pageUrl, "Mediaset non ha fornito il video in questo momento.")
         }
-        return Playable.External(film.pageUrl, reason)
     }
 
     private fun kindOf(url: String, contentType: String): StreamKind {

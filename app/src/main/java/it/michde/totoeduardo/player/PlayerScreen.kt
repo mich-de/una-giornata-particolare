@@ -282,10 +282,12 @@ fun PlayerScreen(
                     Text(msg, color = Palette.Text, fontSize = 15.sp, textAlign = TextAlign.Center)
                     Spacer(Modifier.height(20.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Button(
-                            onClick = { tracker.saveProgress(film.id, exoPlayer.currentPosition, exoPlayer.duration); onOpenExternal(msg) },
-                            colors = ButtonDefaults.buttonColors(containerColor = accent)
-                        ) { Text("Apri in ${Platforms.appName(film.platform)}", color = Color.Black, fontWeight = FontWeight.Bold) }
+                        if (film.platform != Platforms.MEDIASET) {
+                            Button(
+                                onClick = { tracker.saveProgress(film.id, exoPlayer.currentPosition, exoPlayer.duration); onOpenExternal(msg) },
+                                colors = ButtonDefaults.buttonColors(containerColor = accent)
+                            ) { Text("Apri in ${Platforms.appName(film.platform)}", color = Color.Black, fontWeight = FontWeight.Bold) }
+                        }
                         OutlinedButton(onClick = { leave() }) { Text("Indietro", color = Palette.Text) }
                     }
                 }

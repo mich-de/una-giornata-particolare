@@ -21,9 +21,13 @@ data class Film(
     val source: String,
     val matched: String
 ) {
-    /** I titoli che si aprono solo nell'app/sito ufficiale. */
+    /** I titoli che si aprono solo nell'app/sito ufficiale (YouTube). */
     val opensExternally: Boolean
-        get() = platform == Platforms.YOUTUBE || (platform == Platforms.MEDIASET && drm == true)
+        get() = platform == Platforms.YOUTUBE
+
+    /** Mediaset con abbonamento/login: nascosto, non si rimanda all'app Infinity. */
+    val hidden: Boolean
+        get() = platform == Platforms.MEDIASET && drm == true
 
     fun toJson(): JSONObject = JSONObject().apply {
         put("id", id)
