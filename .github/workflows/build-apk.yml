@@ -39,7 +39,8 @@ jobs:
           VERSION_NAME: 1.0.${{ github.run_number }}
         run: |
           chmod +x gradlew
-          ./gradlew --no-configuration-cache assembleRelease
+          set -o pipefail
+          ./gradlew --no-configuration-cache assembleRelease 2>&1 | tee build.log
           cp app/build/outputs/apk/release/app-release.apk toto-eduardo-decrescenzo.apk
 
       - uses: actions/upload-artifact@v4
@@ -57,4 +58,15 @@ jobs:
           mkdir -p out && cp toto-eduardo-decrescenzo.apk out/ && cp scansione.log out/ || true
           git add -f out/toto-eduardo-decrescenzo.apk out/scansione.log app/src/main/assets/catalogo.json
           git commit -m "APK ${{ github.run_number }} [skip ci]"
+          git push
+
+      - name: Salva il log dell'errore nel branch
+        if: failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p out && grep -E "^e: |error:|What went wrong|FAILURE" -A3 build.log > out/build-errors.log || tail -80 build.log > out/build-errors.log
+          git add -f out/build-errors.log
+          git commit -m "Log errore build [skip ci]"
+          git pull --rebase -q || true
           git push
