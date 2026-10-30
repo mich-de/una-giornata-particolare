@@ -131,7 +131,8 @@ fun AppRoot(repo: CatalogRepository) {
             onOpenExternal = { reason ->
                 nowPlaying = null; progressVersion++
                 if (np.film.platform != Platforms.MEDIASET) external = np.film to reason
-            }
+            },
+            onProtected = { scope.launch { catalog = repo.applyDrm(catalog, mapOf(np.film.id to true)) } }
         )
         return
     }

@@ -130,32 +130,36 @@ object StreamResolver {
 
     // ------------------------------------------------------------------ Mediaset
 
+    /**
+     * Come l'app Le Iene: SMIL ThePlatform, si preferisce il manifest "_no_" (in chiaro),
+     * altrimenti il primo link restituito che non sia esplicitamente cifrato.
+     * "Serve abbonamento" solo se ThePlatform rifiuta per protezione e non dà alcun link.
+     */
     private fun resolveMediaset(film: Film): Playable {
-        var protectedSeen = false
+        var protectionError = false
         var geoBlocked = false
-        val attempts = TP_ASSET_PROFILES.flatMap { a -> listOf("MPEG4", "M3U", "MPEG-DASH").map { f -> f to a } }
+        val encrypted = listOf("_sampleaes", "_cenc", "_widevine", "_playready", "_fp_", "_drm")
+        val candidates = mutableListOf<Pair<String, String>>() // url, formato
+        val attempts = TP_ASSET_PROFILES.flatMap { a -> listOf("MPEG-DASH", "M3U", "MPEG4").map { f -> f to a } }
         for ((format, assets) in attempts) {
             val url = "https://link.theplatform.eu/s/PR1GhC/media/guid/2702976343/${film.ref}" +
                 "?mbr=true&formats=$format&assetTypes=$assets&format=SMIL"
             val smil = Http.get(url) ?: continue
-            if (smil.contains("ProtectionScheme") || smil.contains("None of the available releases")) protectedSeen = true
+            if (smil.contains("ProtectionScheme") || smil.contains("None of the available releases")) protectionError = true
             if (smil.contains("GeoLocationBlocked", ignoreCase = true)) geoBlocked = true
-            val srcs = Regex("<video[^>]+src=\"([^\"]+)\"").findAll(smil)
+            Regex("<video[^>]+src=\"([^\"]+)\"").findAll(smil)
                 .map { it.groupValues[1].replace("msf.ticdn.it", "msf.cdn.mediaset.net").replace("netfarmunica", "net/farmunica") }
-                .toList()
-            if (srcs.isEmpty()) continue
-            val clear = srcs.firstOrNull { "_no_" in it } ?: srcs.firstOrNull { s ->
-                listOf("_sampleaes", "_fp_", "_cenc", "_widevine", "_drm").none { s.contains(it, ignoreCase = true) } &&
-                    (format != "MPEG-DASH")
+                .forEach { candidates += it to format }
+            candidates.firstOrNull { "_no_" in it.first }?.let { (u, f) ->
+                return Playable.Stream(u, kindOf(u, if (f == "MPEG-DASH") "dash" else ""))
             }
-            if (clear != null) {
-                return Playable.Stream(clear, kindOf(clear, if (format == "MPEG-DASH") "dash" else ""))
-            }
-            protectedSeen = true
+        }
+        candidates.firstOrNull { (u, _) -> encrypted.none { u.contains(it, ignoreCase = true) } }?.let { (u, f) ->
+            return Playable.Stream(u, kindOf(u, if (f == "MPEG-DASH") "dash" else ""))
         }
         return when {
             geoBlocked -> Playable.External(film.pageUrl, "Mediaset rende disponibile questo titolo solo dall'Italia.")
-            protectedSeen -> Playable.External(
+            protectionError || candidates.isNotEmpty() -> Playable.External(
                 film.pageUrl,
                 "Su Mediaset Infinity questo titolo richiede l'abbonamento: lo tolgo dal catalogo.",
                 needsSubscription = true

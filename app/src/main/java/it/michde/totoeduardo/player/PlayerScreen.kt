@@ -67,7 +67,8 @@ fun PlayerScreen(
     stream: Playable.Stream,
     initialPositionMs: Long = 0L,
     onBack: () -> Unit,
-    onOpenExternal: (String) -> Unit
+    onOpenExternal: (String) -> Unit,
+    onProtected: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val tracker = remember { PlaybackProgressTracker(context) }
@@ -172,8 +173,10 @@ fun PlayerScreen(
                     PlaybackException.ERROR_CODE_DRM_SYSTEM_ERROR,
                     PlaybackException.ERROR_CODE_DRM_CONTENT_ERROR,
                     PlaybackException.ERROR_CODE_DRM_DISALLOWED_OPERATION,
-                    PlaybackException.ERROR_CODE_DRM_UNSPECIFIED ->
+                    PlaybackException.ERROR_CODE_DRM_UNSPECIFIED -> {
+                        if (film.platform == Platforms.MEDIASET) onProtected()
                         "Il titolo è protetto e la licenza non è stata concessa a questo dispositivo."
+                    }
                     PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS,
                     PlaybackException.ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE ->
                         "Il server di ${Platforms.appName(film.platform)} ha rifiutato la richiesta (titolo scaduto o disponibile solo in Italia)."
