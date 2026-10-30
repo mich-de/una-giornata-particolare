@@ -30,9 +30,11 @@ enum class StreamKind { HLS, DASH, MP4 }
 object StreamResolver {
 
     private const val RAI = "https://www.raiplay.it"
-    private const val TP_ASSETS =
-        "geoNo:HD,browser,geoIT|geoNo:HD,geoIT|geoNo:SD,browser,geoIT|geoNo:SD,geoIT|geoNo|HD|SD"
-
+    /** Profili di release ThePlatform: HbbTV (smart TV) e browser, senza Widevine. */
+    private val TP_ASSET_PROFILES = listOf(
+        "HD,HBBTV,geoIT%7CgeoNo:HD,HBBTV,geoIT%7CgeoNo:HD,geoIT%7CgeoNo:SD,HBBTV,geoIT%7CgeoNo:SD,geoIT%7CgeoNo",
+        "geoNo:HD,browser,geoIT%7CgeoNo:HD,geoIT%7CgeoNo:SD,browser,geoIT%7CgeoNo:SD,geoIT%7CgeoNo%7CHD%7CSD"
+    )
     suspend fun resolve(film: Film): Playable = withContext(Dispatchers.IO) {
         try {
             when (film.platform) {
@@ -131,13 +133,16 @@ object StreamResolver {
     private fun resolveMediaset(film: Film): Playable {
         var protectedSeen = false
         var geoBlocked = false
-        for (format in listOf("MPEG-DASH", "M3U", "MPEG4")) {
+        val attempts = TP_ASSET_PROFILES.flatMap { a -> listOf("MPEG4", "M3U", "MPEG-DASH").map { f -> f to a } }
+        for ((format, assets) in attempts) {
             val url = "https://link.theplatform.eu/s/PR1GhC/media/guid/2702976343/${film.ref}" +
-                "?mbr=true&formats=$format&assetTypes=$TP_ASSETS&format=SMIL"
+                "?mbr=true&formats=$format&assetTypes=$assets&format=SMIL"
             val smil = Http.get(url) ?: continue
             if (smil.contains("ProtectionScheme") || smil.contains("None of the available releases")) protectedSeen = true
             if (smil.contains("GeoLocationBlocked", ignoreCase = true)) geoBlocked = true
-            val srcs = Regex("<video[^>]+src=\"([^\"]+)\"").findAll(smil).map { it.groupValues[1] }.toList()
+            val srcs = Regex("<video[^>]+src=\"([^\"]+)\"").findAll(smil)
+                .map { it.groupValues[1].replace("msf.ticdn.it", "msf.cdn.mediaset.net").replace("netfarmunica", "net/farmunica") }
+                .toList()
             if (srcs.isEmpty()) continue
             val clear = srcs.firstOrNull { "_no_" in it } ?: srcs.firstOrNull { s ->
                 listOf("_sampleaes", "_fp_", "_cenc", "_widevine", "_drm").none { s.contains(it, ignoreCase = true) } &&

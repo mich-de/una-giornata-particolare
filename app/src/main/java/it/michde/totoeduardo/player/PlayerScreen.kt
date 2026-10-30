@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -78,6 +79,9 @@ fun PlayerScreen(
     var duration by remember { mutableLongStateOf(0L) }
     var buffering by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
+    var seeking by remember { mutableStateOf(false) }
+    var seekRatio by remember { mutableFloatStateOf(0f) }
+    var lastInteraction by remember { mutableIntStateOf(0) }
     val supportedSubs = remember(stream) { stream.subtitles.filter { subtitleMime(it.url) != null } }
     var subsOn by remember { mutableStateOf(false) }
 
@@ -130,6 +134,7 @@ fun PlayerScreen(
         exoPlayer.seekTo(p)
         position = p
         showControls = true
+        lastInteraction++
     }
 
     fun setSubtitles(on: Boolean) {
@@ -196,12 +201,17 @@ fun PlayerScreen(
         }
     }
 
-    LaunchedEffect(showControls, isPlaying) {
+    LaunchedEffect(showControls) {
         if (showControls) {
             try {
                 playFocus.requestFocus()
             } catch (_: Exception) {
             }
+        }
+    }
+
+    LaunchedEffect(showControls, isPlaying, seeking, lastInteraction) {
+        if (showControls && !seeking) {
             delay(6000)
             if (isPlaying && error == null) showControls = false
         }
@@ -338,12 +348,49 @@ fun PlayerScreen(
 
                 Column(Modifier.fillMaxWidth().align(Alignment.BottomCenter)) {
                     val ratio = if (duration > 0) (position.toFloat() / duration).coerceIn(0f, 1f) else 0f
-                    Box(Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(3.dp)).background(Color(0x55FFFFFF))) {
-                        Box(Modifier.fillMaxWidth(ratio).fillMaxHeight().background(accent))
-                    }
+                    var sliderFocused by remember { mutableStateOf(false) }
+                    Slider(
+                        value = if (seeking) seekRatio else ratio,
+                        onValueChange = { v ->
+                            seeking = true
+                            seekRatio = v
+                            showControls = true
+                        },
+                        onValueChangeFinished = {
+                            if (duration > 0) {
+                                val target = (seekRatio * duration).toLong()
+                                exoPlayer.seekTo(target)
+                                position = target
+                            }
+                            seeking = false
+                        },
+                        enabled = duration > 0,
+                        colors = SliderDefaults.colors(
+                            thumbColor = if (sliderFocused) Color.White else accent,
+                            activeTrackColor = accent,
+                            inactiveTrackColor = Color(0x55FFFFFF)
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .onFocusChanged { f ->
+                                sliderFocused = f.isFocused
+                                if (!f.isFocused && seeking) {
+                                    seeking = false
+                                }
+                            }
+                            .onPreviewKeyEvent { ev ->
+                                // sul telecomando: ←/→ spostano di 30 s quando la barra è selezionata
+                                if (ev.type != KeyEventType.KeyDown || duration <= 0) return@onKeyEvent false
+                                when (ev.nativeKeyEvent.keyCode) {
+                                    KeyEvent.KEYCODE_DPAD_LEFT -> { seekBy(-30_000); true }
+                                    KeyEvent.KEYCODE_DPAD_RIGHT -> { seekBy(30_000); true }
+                                    else -> false
+                                }
+                            }
+                    )
                     Spacer(Modifier.height(10.dp))
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text(formatTime(position), color = accent, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+                        Text(formatTime(if (seeking) (seekRatio * duration).toLong() else position), color = accent, fontSize = 13.sp, fontWeight = FontWeight.Medium)
                         Text(formatTime(duration), color = Color(0xFFAAAAAA), fontSize = 13.sp, fontWeight = FontWeight.Medium)
                     }
                 }
