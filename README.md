@@ -13,7 +13,7 @@ Stessa architettura di *Una Giornata Particolare*: Jetpack Compose + Media3 ExoP
   - RaiPlay via relinker Rai (HLS/DASH); per i titoli protetti la licenza **Widevine** viene richiesta al server di licenze Rai, come fa il loro player web. Sottotitoli Rai quando disponibili (tasto **CC**).
   - Mediaset Infinity via ThePlatform (DASH/HLS senza protezione).
   - LA7 via Kaltura (HLS).
-- **Niente app esterne per Mediaset**: all'avvio l'app verifica dall'Italia quali titoli Infinity si vedono senza abbonamento; quelli che lo richiedono vengono nascosti.
+- **Mediaset senza app Infinity**: i titoli in chiaro si vedono subito (come l'app Le Iene); quelli protetti ma gratuiti si vedono accedendo con il proprio account Mediaset (ⓘ → Accedi), con licenza Widevine rilasciata da Mediaset come nell'add-on Kodi ufficiale. I titoli Infinity+ restano nascosti.
 - **Riprendi da dove eri rimasto**, barra di avanzamento sulle schede, ±10 s con il D-pad, ±30 s con i tasti media.
 
 ## Come funziona il riconoscimento
