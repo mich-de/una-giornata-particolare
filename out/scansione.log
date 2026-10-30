@@ -1,0 +1,11 @@
+== RaiPlay
+  indice A-Z: 4819 programmi, 89 da controllare
+  trovati 59 titoli
+== Mediaset Infinity
+  183 ricerche (9 fallite), trovati 16 titoli
+== LA7
+  30 pagine viste, trovati 0 titoli
+== YouTube (Il Teatro di Eduardo)
+  https://www.youtube.com/@eduardodefilippo/videos: ERROR: [youtube:tab] @eduardodefilippo/videos: Unable to download API page: HTTP Error 404: Not Found (caused by <HTTPError 404: Not Found>)
+  https://www.youtube.com/user/eduardodefilippo/videos: ERROR: [youtube:tab] eduardodefilippo/videos: Unable to download API page: HTTP Error 404: Not Found (caused by <HTTPError 404: Not Found>)
+Salvati 75 titoli in /home/runner/work/una-giornata-particolare/una-giornata-particolare/app/src/main/assets/catalogo.json: {'raiplay': 59, 'mediaset': 16, 'la7': 0, 'youtube': 0}
