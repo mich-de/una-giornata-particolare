@@ -380,7 +380,7 @@ fun PlayerScreen(
                             }
                             .onPreviewKeyEvent { ev ->
                                 // sul telecomando: ←/→ spostano di 30 s quando la barra è selezionata
-                                if (ev.type != KeyEventType.KeyDown || duration <= 0) return@onKeyEvent false
+                                if (ev.type != KeyEventType.KeyDown || duration <= 0) return@onPreviewKeyEvent false
                                 when (ev.nativeKeyEvent.keyCode) {
                                     KeyEvent.KEYCODE_DPAD_LEFT -> { seekBy(-30_000); true }
                                     KeyEvent.KEYCODE_DPAD_RIGHT -> { seekBy(30_000); true }
