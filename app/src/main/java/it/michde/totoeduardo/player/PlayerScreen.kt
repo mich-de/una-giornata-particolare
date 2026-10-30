@@ -92,7 +92,6 @@ fun PlayerScreen(
         val http = DefaultHttpDataSource.Factory()
             .setUserAgent(stream.userAgent)
             .setAllowCrossProtocolRedirects(true)
-            .setDefaultRequestProperties(stream.headers)
             .setConnectTimeoutMs(15_000)
             .setReadTimeoutMs(20_000)
         ExoPlayer.Builder(context)

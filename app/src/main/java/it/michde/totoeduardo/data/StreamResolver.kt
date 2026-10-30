@@ -13,8 +13,7 @@ sealed class Playable {
         val kind: StreamKind,
         val widevineLicenseUrl: String? = null,
         val subtitles: List<SubtitleTrack> = emptyList(),
-        val userAgent: String = Http.BROWSER_UA,
-        val headers: Map<String, String> = emptyMap()
+        val userAgent: String = Http.BROWSER_UA
     ) : Playable()
 
     /** Da aprire nell'app o nel sito ufficiale (login, abbonamento, YouTube...). */
@@ -40,14 +39,7 @@ object StreamResolver {
         try {
             when (film.platform) {
                 Platforms.RAIPLAY -> resolveRai(film)
-                Platforms.MEDIASET -> {
-                    val clear = resolveMediaset(film)
-                    if (clear is Playable.External && clear.needsSubscription && MediasetAuth.isConfigured) {
-                        resolveMediasetWithAccount(film) ?: Playable.External(
-                            film.pageUrl, "Mediaset non concede questo titolo al tuo account (forse è Infinity+).", needsSubscription = true
-                        )
-                    } else clear
-                }
+                Platforms.MEDIASET -> resolveMediaset(film)
                 Platforms.LA7 -> Playable.Stream(
                     "https://kdam.iltrovatore.it/p/103/sp/10300/playManifest/entryId/${film.ref}/format/applehttp/protocol/https/a.m3u8",
                     StreamKind.HLS
@@ -174,35 +166,6 @@ object StreamResolver {
             )
             else -> Playable.External(film.pageUrl, "Mediaset non ha fornito il video in questo momento.")
         }
-    }
-
-    private const val WV_ASSETS =
-        "HD,browser,widevine,geoIT%7CgeoNo:HD,browser,geoIT%7CgeoNo:HD,geoIT%7CgeoNo:SD,browser,widevine,geoIT%7CgeoNo:SD,browser,geoIT%7CgeoNo:SD,geoIT%7CgeoNo"
-
-    /**
-     * Titolo protetto con l'account Mediaset dell'utente (come l'add-on Kodi ufficiale):
-     * manifest DASH "commonEncryption" + licenza Widevine dal server ThePlatform con il token di sessione.
-     */
-    private fun resolveMediasetWithAccount(film: Film): Playable? {
-        val token = MediasetAuth.currentToken() ?: return null
-        val url = "https://link.theplatform.eu/s/PR1GhC/media/guid/2702976343/${film.ref}" +
-            "?auto=true&balance=true&format=SMIL&formats=MPEG-DASH,MPEG4,M3U&tracking=true&assetTypes=$WV_ASSETS"
-        val smil = Http.get(url) ?: return null
-        val refTag = Regex("<ref\\s([^>]*)>").find(smil)?.groupValues?.get(1) ?: return null
-        val attrs = Regex("(\\w+)=\"([^\"]*)\"").findAll(refTag).associate { it.groupValues[1] to it.groupValues[2] }
-        val src = attrs["src"]?.takeIf { it.isNotBlank() } ?: return null
-        val type = attrs["type"].orEmpty()
-        val headers = mapOf("t-apigw" to token.apigw, "t-cts" to token.cts)
-        if (attrs["security"] != "commonEncryption") {
-            return Playable.Stream(src, kindOf(src, if ("dash" in type) "dash" else type), headers = headers)
-        }
-        val tracking = Regex("name=\"trackingData\"\\s+value=\"([^\"]+)\"").find(smil)?.groupValues?.get(1)
-            ?: Regex("value=\"([^\"]*pid=[^\"]+)\"\\s+name=\"trackingData\"").find(smil)?.groupValues?.get(1)
-            ?: return null
-        val pid = tracking.split("|").firstOrNull { it.startsWith("pid=") }?.removePrefix("pid=") ?: return null
-        val license = "https://widevine.entitlement.theplatform.eu/wv/web/ModularDrm/getRawWidevineLicense" +
-            "?releasePid=$pid&account=http://access.auth.theplatform.com/data/Account/2702976343&schema=1.0&token=${token.cts}"
-        return Playable.Stream(src, StreamKind.DASH, widevineLicenseUrl = license, headers = headers)
     }
 
     private fun kindOf(url: String, contentType: String): StreamKind {
