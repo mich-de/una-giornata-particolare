@@ -1,0 +1,11 @@
+e: file:///home/runner/work/una-giornata-particolare/una-giornata-particolare/app/src/main/java/it/michde/totoeduardo/player/PlayerScreen.kt:383:93 Unresolved label.
+
+> Task :app:processReleaseManifestForPackage
+> Task :app:mergeExtDexRelease
+--
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileReleaseKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
