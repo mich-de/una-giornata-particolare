@@ -1,0 +1,1474 @@
+{
+ "_note": "Filmografia di riferimento usata per riconoscere i titoli sulle piattaforme. Modificabile a mano.",
+ "persons": {
+  "toto": {
+   "name": "Totò",
+   "keywords": [
+    "antonio de curtis",
+    "toto"
+   ],
+   "full": "Antonio de Curtis"
+  },
+  "eduardo": {
+   "name": "Eduardo De Filippo",
+   "keywords": [
+    "eduardo de filippo",
+    "eduardo"
+   ],
+   "full": "Eduardo De Filippo"
+  },
+  "decrescenzo": {
+   "name": "Luciano De Crescenzo",
+   "keywords": [
+    "luciano de crescenzo",
+    "de crescenzo",
+    "bellavista"
+   ],
+   "full": "Luciano De Crescenzo"
+  }
+ },
+ "works": [
+  {
+   "title": "Fermo con le mani!",
+   "year": 1937,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Animali pazzi",
+   "year": 1939,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "San Giovanni decollato",
+   "year": 1940,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "L'allegro fantasma",
+   "year": 1941,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Due cuori fra le belve",
+   "year": 1943,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il ratto delle Sabine",
+   "year": 1945,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I due orfanelli",
+   "year": 1947,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Fifa e arena",
+   "year": 1948,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò al giro d'Italia",
+   "year": 1948,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I pompieri di Viggiù",
+   "year": 1949,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò le Mokò",
+   "year": 1949,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "L'imperatore di Capri",
+   "year": 1949,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò cerca casa",
+   "year": 1949,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Yvonne la Nuit",
+   "year": 1949,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò cerca moglie",
+   "year": 1950,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Figaro qua, Figaro là",
+   "year": 1950,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Le sei mogli di Barbablù",
+   "year": 1950,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Tototarzan",
+   "year": 1950,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò sceicco",
+   "year": 1950,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "47 morto che parla",
+   "year": 1950,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò terzo uomo",
+   "year": 1951,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Sette ore di guai",
+   "year": 1951,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Guardie e ladri",
+   "year": 1951,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò e i re di Roma",
+   "year": 1952,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò a colori",
+   "year": 1952,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò e le donne",
+   "year": 1952,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il più comico spettacolo del mondo",
+   "year": 1953,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Un turco napoletano",
+   "year": 1953,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Una di quelle",
+   "year": 1953,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "L'uomo, la bestia e la virtù",
+   "year": 1953,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Dov'è la libertà...?",
+   "year": 1954,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Questa è la vita",
+   "year": 1954,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Miseria e nobiltà",
+   "year": 1954,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il medico dei pazzi",
+   "year": 1954,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Tempi nostri",
+   "year": 1954,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò cerca pace",
+   "year": 1954,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I tre ladri",
+   "year": 1954,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò all'inferno",
+   "year": 1955,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Siamo uomini o caporali",
+   "year": 1955,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il coraggio",
+   "year": 1955,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Racconti romani",
+   "year": 1955,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Destinazione Piovarolo",
+   "year": 1955,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò e Carolina",
+   "year": 1955,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "La banda degli onesti",
+   "year": 1956,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò, Peppino e i fuorilegge",
+   "year": 1956,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò, Peppino e la... malafemmina",
+   "year": 1956,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò lascia o raddoppia?",
+   "year": 1956,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò, Vittorio e la dottoressa",
+   "year": 1957,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò e Marcellino",
+   "year": 1958,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò, Peppino e le fanatiche",
+   "year": 1958,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò nella luna",
+   "year": 1958,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Gambe d'oro",
+   "year": 1958,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I soliti ignoti",
+   "year": 1958,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò a Parigi",
+   "year": 1958,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "La legge è legge",
+   "year": 1958,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Arrangiatevi!",
+   "year": 1959,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò, Eva e il pennello proibito",
+   "year": 1959,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I tartassati",
+   "year": 1959,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "La cambiale",
+   "year": 1959,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I ladri",
+   "year": 1959,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Noi duri",
+   "year": 1960,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Signori si nasce",
+   "year": 1960,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Letto a tre piazze",
+   "year": 1960,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Risate di gioia",
+   "year": 1960,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò, Fabrizi e i giovani d'oggi",
+   "year": 1960,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Chi si ferma è perduto",
+   "year": 1960,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Tototruffa '62",
+   "year": 1961,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò, Peppino e... la dolce vita",
+   "year": 1961,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Sua Eccellenza si fermò a mangiare",
+   "year": 1961,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I due marescialli",
+   "year": 1961,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò Diabolicus",
+   "year": 1962,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò contro Maciste",
+   "year": 1962,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò e Peppino divisi a Berlino",
+   "year": 1962,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Lo smemorato di Collegno",
+   "year": 1962,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I due colonnelli",
+   "year": 1962,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò di notte n. 1",
+   "year": 1962,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il giorno più corto",
+   "year": 1962,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò contro i quattro",
+   "year": 1963,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il monaco di Monza",
+   "year": 1963,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò e Cleopatra",
+   "year": 1963,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il comandante",
+   "year": 1963,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò sexy",
+   "year": 1963,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Gli onorevoli",
+   "year": 1963,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò contro il pirata nero",
+   "year": 1964,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Le belle famiglie",
+   "year": 1964,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Che fine ha fatto Totò baby?",
+   "year": 1964,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò d'Arabia",
+   "year": 1965,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "La mandragola",
+   "year": 1965,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Rita, la figlia americana",
+   "year": 1965,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Gli amanti latini",
+   "year": 1965,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Uccellacci e uccellini",
+   "year": 1966,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Operazione San Gennaro",
+   "year": 1966,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Le streghe",
+   "year": 1967,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il padre di famiglia",
+   "year": 1967,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Capriccio all'italiana",
+   "year": 1968,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Totò Story",
+   "year": 1968,
+   "persons": [
+    "toto"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Tutto Totò",
+   "year": 1967,
+   "persons": [
+    "toto"
+   ],
+   "kind": "tv"
+  },
+  {
+   "title": "Napoli milionaria",
+   "year": 1950,
+   "persons": [
+    "toto",
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "L'oro di Napoli",
+   "year": 1954,
+   "persons": [
+    "toto",
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Tre uomini in frak",
+   "year": 1932,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il cappello a tre punte",
+   "year": 1935,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Sono stato io!",
+   "year": 1937,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il marchese di Ruvolito",
+   "year": 1939,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "In campagna è caduta una stella",
+   "year": 1939,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il sogno di tutti",
+   "year": 1940,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "A che servono questi quattrini?",
+   "year": 1942,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Non ti pago!",
+   "year": 1942,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Casanova farebbe così!",
+   "year": 1942,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Ti conosco, mascherina!",
+   "year": 1943,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Uno tra la folla",
+   "year": 1946,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Assunta Spina",
+   "year": 1948,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Campane a martello",
+   "year": 1949,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Filumena Marturano",
+   "year": 1951,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Cameriera bella presenza offresi...",
+   "year": 1951,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Ragazze da marito",
+   "year": 1952,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Marito e moglie",
+   "year": 1952,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Napoletani a Milano",
+   "year": 1953,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Questi fantasmi",
+   "year": 1954,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Fortunella",
+   "year": 1958,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Ferdinando I, re di Napoli",
+   "year": 1959,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il sogno di una notte di mezza sbornia",
+   "year": 1959,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Fantasmi a Roma",
+   "year": 1961,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il giudizio universale",
+   "year": 1961,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Matrimonio all'italiana",
+   "year": 1964,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Oggi, domani, dopodomani",
+   "year": 1965,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Spara forte, più forte... non capisco",
+   "year": 1966,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "I fratelli De Filippo",
+   "year": 2021,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Natale in casa Cupiello",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Napoli milionaria!",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Questi fantasmi!",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Le voci di dentro",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il sindaco del rione Sanità",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Non ti pago",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Ditegli sempre di sì",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Uomo e galantuomo",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Gli esami non finiscono mai",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "De Pretore Vincenzo",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il contratto",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "L'arte della commedia",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Mia famiglia",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Bene mio e core mio",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il figlio di Pulcinella",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Sabato, domenica e lunedì",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "La grande magia",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Dolore sotto chiave",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Le bugie con le gambe lunghe",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il cilindro",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Gennareniello",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Quei figuri di tanti anni fa",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il berretto a sonagli",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Pericolosamente",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Amicizia",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Sik-Sik, l'artefice magico",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "I morti non fanno paura",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il monumento",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Chi è cchiù felice 'e me!",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Io, l'erede",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Ogni anno punto e da capo",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Mettiti al passo",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "La parte di Amleto",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Filosoficamente",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Occhiali neri",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Lu curaggio de nu pumpiero napulitano",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Le metamorfosi di un suonatore ambulante",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "'Na santarella",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il medico dei pazzi",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Miseria e nobiltà",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Uno coi capelli bianchi",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Tommaso d'Amalfi",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Peppino Girella",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "teatro"
+  },
+  {
+   "title": "Il nostro Eduardo",
+   "year": null,
+   "persons": [
+    "eduardo"
+   ],
+   "kind": "documentario"
+  },
+  {
+   "title": "Il pap'occhio",
+   "year": 1980,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "FF.SS.",
+   "year": 1983,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Così parlò Bellavista",
+   "year": 1984,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Il mistero di Bellavista",
+   "year": 1985,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "32 dicembre",
+   "year": 1988,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Croce e delizia",
+   "year": 1995,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "film"
+  },
+  {
+   "title": "Così parlò De Crescenzo",
+   "year": 2016,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "documentario"
+  },
+  {
+   "title": "I grandi miti greci",
+   "year": null,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "tv"
+  },
+  {
+   "title": "Storia della filosofia greca",
+   "year": null,
+   "persons": [
+    "decrescenzo"
+   ],
+   "kind": "tv"
+  }
+ ]
+}

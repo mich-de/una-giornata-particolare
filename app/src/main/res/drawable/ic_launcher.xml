@@ -1,0 +1,12 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#110F0E" android:pathData="M0,0h108v108h-108z" />
+    <!-- boccascena -->
+    <path android:strokeColor="#DDAA4A" android:strokeWidth="4" android:fillColor="#00000000"
+        android:pathData="M22,86 L22,40 Q22,22 54,22 Q86,22 86,40 L86,86" />
+    <!-- un sipario per autore: Totò, Eduardo, De Crescenzo -->
+    <path android:fillColor="#E6B655" android:pathData="M29,86 V49.0 A7.0,7.0 0 0 1 43,49.0 V86 Z" />
+    <path android:fillColor="#D0583F" android:pathData="M47,86 V49.0 A7.0,7.0 0 0 1 61,49.0 V86 Z" />
+    <path android:fillColor="#55A3D4" android:pathData="M65,86 V49.0 A7.0,7.0 0 0 1 79,49.0 V86 Z" />
+    <path android:fillColor="#DDAA4A" android:pathData="M18,86 h72 v4 h-72 z" />
+</vector>

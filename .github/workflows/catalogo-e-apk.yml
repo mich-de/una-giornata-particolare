@@ -1,0 +1,114 @@
+name: Catalogo e APK
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 4 * * 1"   # ogni lunedì: nuova scansione delle piattaforme
+  workflow_dispatch:
+    inputs:
+      deep:
+        description: "Scansione completa dell'indice RaiPlay"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalogo-e-apk
+  cancel-in-progress: false
+
+jobs:
+  catalogo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: yt-dlp (per il canale YouTube "Il Teatro di Eduardo")
+        run: pip install --quiet yt-dlp
+
+      - name: Scansione RaiPlay, Mediaset Infinity, LA7, YouTube
+        run: |
+          DEEP=""
+          if [ "${{ github.event_name }}" != "push" ] && [ "${{ inputs.deep }}" != "false" ]; then DEEP="--deep"; fi
+          python3 scripts/scrape_catalog.py $DEEP | tee scansione.log
+
+      - name: Riepilogo
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, collections
+          d = json.load(open("app/src/main/assets/catalogo.json"))
+          print(f"### Catalogo: {len(d['films'])} titoli\n")
+          print("Per piattaforma:", dict(collections.Counter(f["platform"] for f in d["films"])), "\n")
+          print("Per autore:", dict(collections.Counter(p for f in d["films"] for p in f["persons"])), "\n")
+          print("Esito scansione:", d.get("stats"))
+          PY
+          echo '```' >> "$GITHUB_STEP_SUMMARY"; cat scansione.log >> "$GITHUB_STEP_SUMMARY"; echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Salva il catalogo nel repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/assets/catalogo.json
+          if git diff --cached --quiet; then echo "Catalogo invariato"; exit 0; fi
+          git commit -m "Catalogo aggiornato $(date -u +%Y-%m-%d)"
+          git push
+
+  apk:
+    needs: catalogo
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Chiave di firma (opzionale)
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+            echo "SIGNING_KEYSTORE=$RUNNER_TEMP/release.keystore" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build APK
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: 1.0.${{ github.run_number }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-configuration-cache assembleRelease
+          cp app/build/outputs/apk/release/app-release.apk toto-eduardo-decrescenzo.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: toto-eduardo-decrescenzo-apk
+          path: toto-eduardo-decrescenzo.apk
+
+      - name: Pubblica la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v1.0.${{ github.run_number }}"
+          N=$(python3 -c "import json;print(len(json.load(open('app/src/main/assets/catalogo.json'))['films']))")
+          gh release create "$TAG" toto-eduardo-decrescenzo.apk \
+            --title "Totò · Eduardo · De Crescenzo $TAG" \
+            --notes "APK Android TV + Mobile. Catalogo incluso: $N titoli (l'app lo aggiorna anche da sola)." \
+            --latest
